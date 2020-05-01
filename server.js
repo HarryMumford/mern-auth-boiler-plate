@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+
 const app = express()
 const PORT = process.env.PORT || 8000
 
@@ -11,6 +12,7 @@ app.use(morgan('tiny'))
 
 // use routes
 const users = require('./api/users')
+
 app.use('/api/users', users)
 
 // start server
