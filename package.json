@@ -10,14 +10,7 @@
     "client": "cd client && npm start",
     "dev": "concurrently -n 'server,client' -c 'red,green' \"nodemon server.js\" \"npm run client\"",
     "lint": "eslint client/src --ext .js,.jsx server.js db.js models",
-    "lint:fix": "eslint client/src --ext .js,.jsx server.js db.js models --fix",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "client/src --ext .js,.jsx,.json,.css server.js db.js models": [
-      "prettier --write",
-      "git add"
-    ]
+    "lint:fix": "eslint --ext '.js,.jsx' client/src server.js db.js models --fix"
   },
   "repository": {
     "type": "git",
