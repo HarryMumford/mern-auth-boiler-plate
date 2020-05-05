@@ -1,12 +1,12 @@
 const express = require('express')
 const morgan = require('morgan')
-const cors = require('cors')
+// const cors = require('cors')
 
 const app = express()
 const PORT = process.env.PORT || 8000
 
-// cors policy
-app.use(cors())
+// // cors policy
+// app.use(cors())
 
 // connect to db
 require('./db')

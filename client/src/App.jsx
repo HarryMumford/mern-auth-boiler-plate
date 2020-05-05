@@ -8,7 +8,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/api/users')
+      .get('/api/users')
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err))
   }, [])
@@ -19,9 +19,7 @@ const App = () => {
       return
     }
     axios
-      .post('http://localhost:8000/api/users/user', {
-        name: username,
-      })
+      .post('/api/users/user', username)
       .then(() => {
         console.log('Account created successfully')
       })
@@ -37,6 +35,7 @@ const App = () => {
     if (users.length === 0) {
       return <p>No users</p>
     }
+    return false
   }
 
   return (
