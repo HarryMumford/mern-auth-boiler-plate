@@ -16,9 +16,13 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  register_date: {
+  registerDate: {
     type: Date,
     default: Date.now,
+  },
+  highScore: {
+    type: Number,
+    required: true,
   },
 })
 
