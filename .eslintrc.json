@@ -1,31 +1,32 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier"],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "rules": {
-    "prettier/prettier": "error",
-    "no-unused-vars": "warn",
-    "no-console": "off",
-    "no-alert": "off",
-    "consistent-return": "off",
-    "capitalized-comments": [
-      "error",
-      "always",
-      {
-        "ignoreInlineComments": true,
-        "ignoreConsecutiveComments": true
-      }
-    ]
-  }
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"extends": ["airbnb", "prettier"],
+	"plugins": ["prettier"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"rules": {
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
+		"prettier/prettier": "error",
+		"no-unused-vars": "warn",
+		"no-console": "off",
+		"no-alert": "off",
+		"consistent-return": "off",
+		"capitalized-comments": [
+			"error",
+			"always",
+			{
+				"ignoreInlineComments": true,
+				"ignoreConsecutiveComments": true
+			}
+		]
+	}
 }
