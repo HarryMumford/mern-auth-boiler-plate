@@ -12,7 +12,6 @@ const User = require('../models/User')
 // @access public
 
 router.post('/user', (req, res) => {
-  console.log(req.body)
   const { name, email, password } = req.body
 
   if (!name || !password || !email) {
