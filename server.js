@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8000
 require('./src/db/db')
 
 // Morgan http logger
-app.use(morgan('tiny'))
+app.use(morgan(':method :url :status'))
 
 // Middleware
 app.use(

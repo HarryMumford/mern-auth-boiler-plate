@@ -11,11 +11,11 @@ const User = require('../models/User')
 // @desc register new user
 // @access public
 
-router.post('/user', (req, res) => {
+router.post('/', (req, res) => {
   const { name, email, password } = req.body
 
   if (!name || !password || !email) {
-    res.status(400).json({ msg: 'Please enter all fields' })
+    return res.status(400).json({ msg: 'Please enter all fields' })
   }
 
   User.findOne({ email }).then((user) => {

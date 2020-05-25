@@ -13,30 +13,37 @@ import {
 } from './types'
 
 // Register User
-export const register = ({ name, email, password }) => (dispatch) => {
+const register = ({ name, email, password }) => (dispatch) => {
   // Headers
   const config = {
     headers: {
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
     },
   }
 
   // Request body
   const body = JSON.stringify({ name, email, password })
 
-  axios.post('/api/users/user', body, config).then((res) =>
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data,
-    }).catch((err) => {
+  axios
+    .post('/api/users', body, config)
+    .then((res) =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
+        returnErrors(
+          err.response.data.msg,
+          err.response.status,
+          'REGISTER_FAIL'
+        )
       )
       dispatch({
         type: REGISTER_FAIL,
       })
     })
-  )
 }
 
 // Setup config/headers and token
@@ -79,4 +86,4 @@ const loadUser = () => (dispatch, getState) => {
     })
 }
 
-export { loadUser, tokenConfig }
+export { loadUser, tokenConfig, register }
