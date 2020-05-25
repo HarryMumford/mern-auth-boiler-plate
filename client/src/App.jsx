@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { Provider } from 'react-redux'
-import store from './store'
-import { loadUser } from './flux/actions/authActions'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar'
+import { loadUser } from './flux/actions/authActions'
+import store from './store'
 
-function App() {
-  return (
-    <Provider store={store}>
-      <AppNavbar />
-      <>Hello World</>
-    </Provider>
-  )
+// eslint-disable-next-line react/prefer-stateless-function
+class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser())
+  }
+
+  render() {
+    return (
+      <>
+        <AppNavbar />
+        <>Hello World</>
+      </>
+    )
+  }
 }
 
 export default App

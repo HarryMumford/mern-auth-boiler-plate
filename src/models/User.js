@@ -19,10 +19,6 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  highScore: {
-    type: Number,
-    required: true,
-  },
 })
 
 module.exports = mongoose.model('User', userSchema, 'users')
