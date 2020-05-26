@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { NavLink } from 'reactstrap'
 import { connect } from 'react-redux'
-import { logout } from '../../flux/actions/authActions'
+import { logout } from '../../flux/actions/auth-actions'
 import PropTypes from 'prop-types'
 
 // eslint-disable-next-line react/prefer-stateless-function
