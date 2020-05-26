@@ -86,4 +86,11 @@ const loadUser = () => (dispatch, getState) => {
     })
 }
 
-export { loadUser, tokenConfig, register }
+// Logout user
+const logout = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+  }
+}
+
+export { loadUser, tokenConfig, register, logout }

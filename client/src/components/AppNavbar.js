@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RegisterModal from './auth/registerModal'
+import Logout from './auth/logout'
 import {
   Collapse,
   Navbar,
@@ -31,7 +32,10 @@ class AppNavbar extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <RegisterModal>Register</RegisterModal>
+                  <RegisterModal />
+                </NavItem>
+                <NavItem>
+                  <Logout />
                 </NavItem>
               </Nav>
             </Collapse>

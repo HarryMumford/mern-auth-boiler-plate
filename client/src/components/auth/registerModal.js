@@ -13,6 +13,7 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { clearErrors } from '../../flux/actions/errorActions'
 import { register } from '../../flux/actions/authActions'
 
 class RegisterModal extends Component {
@@ -28,6 +29,7 @@ class RegisterModal extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
   }
 
   componentDidUpdate(prevProps) {
@@ -40,9 +42,15 @@ class RegisterModal extends Component {
         this.setState({ msg: null })
       }
     }
+    if (this.state.modal) {
+      if (this.props.isAuthenticated) {
+        this.toggle()
+      }
+    }
   }
 
   toggle = () => {
+    this.props.clearErrors()
     this.setState({
       modal: !this.state.modal,
     })
@@ -125,4 +133,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
 })
-export default connect(mapStateToProps, { register })(RegisterModal)
+export default connect(mapStateToProps, { register, clearErrors })(
+  RegisterModal
+)
