@@ -88,6 +88,7 @@ const loadUser = () => (dispatch, getState) => {
 
 // Login user
 const login = ({ email, password }) => (dispatch) => {
+  console.log('logging in...')
   // Headers
   const config = {
     headers: {
