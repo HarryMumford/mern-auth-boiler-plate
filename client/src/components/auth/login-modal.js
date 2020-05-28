@@ -26,7 +26,9 @@ function LoginModal() {
   const dispatch = useDispatch()
 
   const toggle = () => {
-    dispatch(clearErrors())
+    if (error.id === 'LOGIN_FAIL') {
+      dispatch(clearErrors())
+    }
     setModal(!modal)
   }
 
@@ -45,7 +47,7 @@ function LoginModal() {
       email,
       password,
     }
-
+    dispatch(clearErrors)
     dispatch(login(user))
   }
 

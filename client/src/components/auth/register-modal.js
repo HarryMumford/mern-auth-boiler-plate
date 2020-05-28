@@ -14,6 +14,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { clearErrors } from '../../flux/actions/error-actions'
 import { register } from '../../flux/actions/auth-actions'
+import { REGISTER_FAIL } from '../../flux/actions/types'
 
 function RegisterModal() {
   const [modal, setModal] = useState(false)
@@ -22,7 +23,24 @@ function RegisterModal() {
   const [password, setPassword] = useState('')
   const [msg, setMsg] = useState(null)
 
+  const error = useSelector((state) => state.error)
+
   const dispatch = useDispatch()
+
+  const toggle = () => {
+    if (error.id === 'REGISTER_FAIL') {
+      dispatch(clearErrors())
+    }
+    setModal(!modal)
+  }
+
+  useEffect(() => {
+    if (error.id === 'REGISTER_FAIL') {
+      setMsg(error.msg)
+    } else {
+      setMsg(null)
+    }
+  }, [error])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -33,16 +51,17 @@ function RegisterModal() {
       password,
     }
 
+    dispatch(clearErrors)
     dispatch(register(newUser))
   }
 
   return (
     <>
-      <NavLink onClick={() => setModal(!modal)} href="#">
+      <NavLink onClick={toggle} href="#">
         Register
       </NavLink>
-      <Modal isOpen={modal} toggle={() => setModal(!modal)}>
-        <ModalHeader toggle={() => setModal(!modal)}>Register</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Register</ModalHeader>
         <ModalBody>
           {msg ? <Alert color="danger">{msg}</Alert> : null}
           <Form onSubmit={handleSubmit}>
@@ -54,7 +73,7 @@ function RegisterModal() {
                 id="name"
                 placeholder="Name"
                 className="mb-3"
-                onChange={(e) => setName(e)}
+                onChange={(e) => setName(e.target.value)}
               />
               <Label for="email">Email</Label>
               <Input
@@ -63,7 +82,7 @@ function RegisterModal() {
                 id="email"
                 placeholder="Email"
                 className="mb-3"
-                onChange={(e) => setEmail(e)}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Label for="password">Password</Label>
               <Input
@@ -72,7 +91,7 @@ function RegisterModal() {
                 id="password"
                 placeholder="Password"
                 className="mb-3"
-                onChange={(e) => setPassword(e)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </FormGroup>
             <Button color="dark" style={{ marginTop: '2rem' }} block>
