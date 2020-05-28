@@ -1,11 +1,10 @@
 const mongoose = require('mongoose')
 
-const MONGODB_URI =
-  'mongodb+srv://HarryMumford:cambiocambio@cluster0-1pu2q.gcp.mongodb.net/test?retryWrites=true&w=majority'
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost/bar-dice-db', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(() => {
     console.log('Mongoose connected')

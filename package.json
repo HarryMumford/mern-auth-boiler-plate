@@ -12,8 +12,8 @@
     "install-client": "cd client && npm i",
     "heroku-postbuild": "npm run install-client && npm run build-client",
     "dev": "concurrently -n 'server,client' -c 'green,blue' \"nodemon server.js\" \"npm run client\"",
-    "lint": "eslint client/src --ext .js,.jsx server.js db.js models",
-    "lint-fix": "eslint --ext '.js,.jsx' client/src server.js db.js models --fix"
+    "lint": "eslint src --ext .js,.jsx client/src --ext .js,.jsx server.js",
+    "lint-fix": "eslint src --ext .js,.jsx client/src --ext .js,.jsx server.js --fix"
   },
   "repository": {
     "type": "git",
@@ -28,11 +28,16 @@
   "homepage": "https://github.com/HarryMumford/bar-dice#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
+    "config": "^3.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.10",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
