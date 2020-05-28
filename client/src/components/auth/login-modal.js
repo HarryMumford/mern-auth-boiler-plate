@@ -25,6 +25,19 @@ function LoginModal() {
 
   const dispatch = useDispatch()
 
+  const toggle = () => {
+    dispatch(clearErrors())
+    setModal(!modal)
+  }
+
+  useEffect(() => {
+    if (error.id === 'LOGIN_FAIL') {
+      setMsg(error.msg)
+    } else {
+      setMsg(null)
+    }
+  }, [error])
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -36,14 +49,6 @@ function LoginModal() {
     dispatch(login(user))
   }
 
-  useEffect(() => {
-    if (error.id === 'LOGIN_FAIL') {
-      setMsg(error.msg)
-    } else {
-      setMsg(null)
-    }
-  }, [error])
-
   return (
     <>
       <NavLink
@@ -54,8 +59,8 @@ function LoginModal() {
       >
         Login
       </NavLink>
-      <Modal isOpen={modal} toggle={() => setModal(!modal)}>
-        <ModalHeader toggle={() => setModal(!modal)}>Login</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Login</ModalHeader>
         <ModalBody>
           {msg ? <Alert color="danger">{msg}</Alert> : null}
           <Form onSubmit={handleSubmit}>
