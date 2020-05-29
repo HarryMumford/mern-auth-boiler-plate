@@ -15,6 +15,5 @@
 - [x] Implement login with error handling
 - [x] Style navbar and auth modals with reactstrap
 - [x] Convert class components to functional components, utilizing react and react-redux hooks
-- [x] Sign up to code climate and add badge to repo
 - [ ] Test api using supertest?
 - [ ] Test front-end using enzyme?
