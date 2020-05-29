@@ -1,7 +1,11 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
+import config from '../../config'
+const { MONGO_URI, MONGO_DB_NAME } = config
+
+const db = `${MONGO_URI}/${MONGO_DB_NAME}`
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/bar-dice-db', {
+  .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
