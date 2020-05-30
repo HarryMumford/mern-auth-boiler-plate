@@ -26,7 +26,7 @@ const db = MONGODB_URI
 
 // Connect to Mongo
 mongoose
-  .connect(db || 'mongodb://localhost/bar-dice-db', {
+  .connect(db, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

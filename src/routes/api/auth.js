@@ -48,12 +48,13 @@ router.post('/login', async (req, res) => {
 })
 
 /**
- * @route   POST api/users
+ * @route   POST api/auth/register
  * @desc    Register new user
  * @access  Public
  */
 
 router.post('/register', async (req, res) => {
+  console.log(JWT_SECRET)
   const { name, email, password } = req.body
 
   // Simple validation
