@@ -25,7 +25,7 @@ const register = ({ name, email, password }) => (dispatch) => {
   const body = JSON.stringify({ name, email, password })
 
   axios
-    .post('/api/users', body, config)
+    .post('/api/auth/register', body, config)
     .then((res) =>
       dispatch({
         type: REGISTER_SUCCESS,
