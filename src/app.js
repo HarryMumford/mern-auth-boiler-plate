@@ -7,8 +7,7 @@ import morgan from 'morgan'
 import config from './config'
 
 // Routes
-import authRoutes from './routes/api/auth'
-import userRoutes from './routes/api/users'
+import allRoutes from './routes'
 
 const { MONGODB_URI } = config
 
@@ -35,8 +34,7 @@ mongoose
   .catch((err) => console.log(err))
 
 // Use Routes
-app.use('/api/users', userRoutes)
-app.use('/api/auth', authRoutes)
+app.use('/', allRoutes)
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

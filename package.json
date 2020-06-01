@@ -1,10 +1,10 @@
 {
-  "name": "bar-dice-app",
+  "name": "mern-auth-boiler-plate",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js --exec babel-node --presets babel-preset-env",
+    "server": "nodemon  --exec babel-node server.js",
     "start": "node server.js",
     "client": "cd client && npm start",
     "build-client": "cd client && npm run build",
@@ -12,7 +12,8 @@
     "heroku-postbuild": "npm run install-client && npm run build-client",
     "dev": "concurrently -n 'server,client' -c 'green,blue' \"npm run server\" \"npm run client\"",
     "lint": "eslint src --ext .js,.jsx client/src --ext .js,.jsx server.js",
-    "lint-fix": "eslint src --ext .js,.jsx client/src --ext .js,.jsx server.js --fix"
+    "lint-fix": "eslint src --ext .js,.jsx client/src --ext .js,.jsx server.js --fix",
+    "test": "mocha --require @babel/register './src/**/**.test.js'"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,12 @@
   },
   "homepage": "https://github.com/HarryMumford/bar-dice#readme",
   "dependencies": {
+    "@babel/runtime": "^7.10.2",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "concurrently": "^5.2.0",
     "config": "^3.3.1",
     "cors": "^2.8.5",
@@ -40,10 +44,11 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.1.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/register": "^7.10.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
