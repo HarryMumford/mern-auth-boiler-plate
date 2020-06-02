@@ -11,9 +11,9 @@
     "install-client": "cd client && npm i",
     "heroku-postbuild": "npm run install-client && npm run build-client",
     "dev": "concurrently -n 'server,client' -c 'green,blue' \"npm run server\" \"npm run client\"",
-    "lint": "eslint src --ext .js,.jsx client/src --ext .js,.jsx server.js",
-    "lint-fix": "eslint src --ext .js,.jsx client/src --ext .js,.jsx server.js --fix",
-    "test": "mocha --require @babel/register './src/**/**.test.js'"
+    "lint": "eslint test --ext .js src --ext .js,.jsx client/src --ext .js,.jsx server.js",
+    "lint-fix": "eslint test --ext .js src --ext .js,.jsx client/src --ext .js,.jsx server.js --fix",
+    "test": "mocha --require @babel/register  --exit './tests/**/**.test.js'"
   },
   "repository": {
     "type": "git",
@@ -39,9 +39,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "mockgoose": "^8.0.4",
     "mongoose": "^5.9.10",
     "morgan": "^1.10.0",
-    "prop-types": "^15.7.2"
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -1,37 +1,25 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import path from 'path'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import config from './config'
 
 // Routes
 import allRoutes from './routes'
 
-const { MONGODB_URI } = config
-
+// Init express app
 const app = express()
 
 // CORS Middleware
 app.use(cors())
+
 // Logger Middleware
-app.use(morgan('dev'))
+if (process.env.NODE_ENV === 'test') {
+  app.use(morgan('dev'))
+}
+
 // Bodyparser Middleware
 app.use(bodyParser.json())
-
-// DB Config
-const db = MONGODB_URI
-
-// Connect to Mongo
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  }) // Adding new mongo url parser
-  .then(() => console.log('MongoDB Connected...'))
-  .catch((err) => console.log(err))
 
 // Use Routes
 app.use('/', allRoutes)
