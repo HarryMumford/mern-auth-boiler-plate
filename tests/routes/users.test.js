@@ -16,14 +16,10 @@ afterEach(async () => {
   await closeDb()
 })
 
-describe('/users GET', function () {
-  it('responds with empty array when no users', (done) => {
-    request(app)
-      .get('/users')
-      .then((res) => {
-        expect(res.body.length).to.equal(0)
-        done()
-      })
-      .catch((err) => done(err))
+describe('/users GET', () => {
+  it('responds with empty array when no users', () => {
+    request(app).get('/users', async (req, res) => {
+      expect(res.body.length).to.equal(0)
+    })
   })
 })
