@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon  --exec babel-node server.js",
+    "server": "NODE_ENV=development nodemon  --exec babel-node server.js",
     "start": "node server.js",
     "client": "cd client && npm start",
     "build-client": "cd client && npm run build",
@@ -13,7 +13,7 @@
     "dev": "concurrently -n 'server,client' -c 'green,blue' \"npm run server\" \"npm run client\"",
     "lint": "eslint test --ext .js src --ext .js,.jsx client/src --ext .js,.jsx server.js",
     "lint-fix": "eslint test --ext .js src --ext .js,.jsx client/src --ext .js,.jsx server.js --fix",
-    "test": "mocha --require @babel/register  --exit './tests/**/**.test.js'"
+    "test": "NODE_ENV=test mocha --timeout 10000 --require @babel/register --exit './tests/**/**.test.js'"
   },
   "repository": {
     "type": "git",

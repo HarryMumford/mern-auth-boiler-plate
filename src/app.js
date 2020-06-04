@@ -3,8 +3,6 @@ import path from 'path'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-
-// Routes
 import allRoutes from './routes'
 
 // Init express app
@@ -14,9 +12,7 @@ const app = express()
 app.use(cors())
 
 // Logger Middleware
-if (process.env.NODE_ENV === 'test') {
-  app.use(morgan('dev'))
-}
+app.use(morgan('dev'))
 
 // Bodyparser Middleware
 app.use(bodyParser.json())

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import User from '../../models/User'
 import config from '../../../config'
 
-const { JWT_SECRET } = config
+const { jwtSecret } = config
 const registerRoute = Router()
 
 /**
@@ -40,7 +40,7 @@ registerRoute.post('/', async (req, res) => {
     const savedUser = await newUser.save()
     if (!savedUser) throw Error('Something went wrong saving the user')
 
-    const token = jwt.sign({ id: savedUser._id }, JWT_SECRET, {
+    const token = jwt.sign({ id: savedUser._id }, jwtSecret, {
       expiresIn: 3600,
     })
 

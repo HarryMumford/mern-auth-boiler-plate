@@ -1,33 +1,30 @@
-import { expect } from 'chai'
-import { describe, beforeEach, afterEach, it } from 'mocha'
-import request from 'supertest'
-import userMocks from '../userMocks'
+import chai from 'chai'
+import chaiHttp from 'chai-http'
+import { it, beforeEach, describe } from 'mocha'
+import User from '../../src/models/User'
+import app from '../../server'
 
-import app from '../../src/app'
-import { connectDb, closeDb } from '../../src/db/connectDb'
+const { expect } = chai
 
-process.env.NODE_ENV = 'test'
+chai.use(chaiHttp)
 
-beforeEach(async function () {
-  await connectDb()
+describe('Users', () => {
+  beforeEach((done) => {
+    User.remove({}, () => {
+      done()
+    })
+  })
 })
 
-afterEach(async function () {
-  await closeDb()
-})
-
-// describe('/users GET', () => {
-//   it('responds with empty array when no users', () => {
-//     request(app).get('/users', (req, res) => {
-//       const responseLength = res.body.length
-//       expect(responseLength).to.equal(0)
-//     })
-//   })
-// })
-
-it('OK, creating a new note works', () => {
-  request(app).post('/auth/register', async (req, res) => {
-    const body = await res.body
-    console.log(body)
+describe('GET /user', () => {
+  it('it should GET all the users', (done) => {
+    chai
+      .request(app)
+      .get('/users')
+      .end((err, res) => {
+        expect(res.status).to.equal(200)
+        expect(res.body).to.be.an('array')
+        done()
+      })
   })
 })
