@@ -1,10 +1,10 @@
 import { Router } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import config from '../../config'
+import config from '../../../config'
 import User from '../../models/User'
 
-const { JWT_SECRET } = config
+const { jwtSecret } = config
 const loginRoute = Router()
 
 /**
@@ -29,7 +29,7 @@ loginRoute.post('/', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) throw Error('Invalid credentials')
 
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: 3600 })
+    const token = jwt.sign({ id: user._id }, jwtSecret, { expiresIn: 3600 })
     if (!token) throw Error('Could not sign the token')
 
     res.status(200).json({

@@ -8,18 +8,26 @@ import { connectDb, closeDb } from '../../src/db/connectDb'
 
 process.env.NODE_ENV = 'test'
 
-beforeEach(async () => {
+beforeEach(async function () {
   await connectDb()
 })
 
-afterEach(async () => {
+afterEach(async function () {
   await closeDb()
 })
 
-describe('/users GET', () => {
-  it('responds with empty array when no users', () => {
-    request(app).get('/users', async (req, res) => {
-      expect(res.body.length).to.equal(0)
-    })
+// describe('/users GET', () => {
+//   it('responds with empty array when no users', () => {
+//     request(app).get('/users', (req, res) => {
+//       const responseLength = res.body.length
+//       expect(responseLength).to.equal(0)
+//     })
+//   })
+// })
+
+it('OK, creating a new note works', () => {
+  request(app).post('/auth/register', async (req, res) => {
+    const body = await res.body
+    console.log(body)
   })
 })

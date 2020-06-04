@@ -2,7 +2,7 @@ import { Router } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../../models/User'
-import config from '../../config'
+import config from '../../../config'
 
 const { JWT_SECRET } = config
 const registerRoute = Router()
@@ -14,7 +14,6 @@ const registerRoute = Router()
  */
 
 registerRoute.post('/', async (req, res) => {
-  console.log(JWT_SECRET)
   const { name, email, password } = req.body
 
   // Simple validation
