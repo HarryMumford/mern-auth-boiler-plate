@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import config from '../../config'
 
 const connectDb = () => {
-  const { dbHost } = config
+  const { dbHost, logging } = config
 
   const options = {
     useNewUrlParser: true,
@@ -14,7 +14,11 @@ const connectDb = () => {
 
   mongoose
     .connect(dbHost, options)
-    .then(() => console.log(`Connected to ${mode} MongoDB`))
+    .then(() => {
+      if (logging) {
+        console.log(`Connected to ${mode} MongoDB`)
+      }
+    })
     .catch((err) => console.log(err))
 }
 
